@@ -19,6 +19,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import DestinationCard from "@/components/DestinationCards";
 
 const destinations = [
@@ -146,6 +147,30 @@ const testimonials = [
   {
     name: "Philip",
     subtitle: "Armonia Tour Athens",
+    rating: 4,
+    text: "Our tour guide was absolutely fantastic. He was incredibly knowledgeable about Nepalese history, gave us fascinating facts and made the whole experience truly memorable.",
+  },
+  {
+    name: "Sanjay Tamara",
+    subtitle: "Tempel Tour Athens",
+    rating: 5,
+    text: "Best tour we have ever had! Our guide knew everything about the region and made us feel like we were travelling with a local friend. Will book again without hesitation.",
+  },
+  {
+    name: "Philip",
+    subtitle: "Armonia Tour Athens",
+    rating: 3,
+    text: "Our tour guide was absolutely fantastic. He was incredibly knowledgeable about Nepalese history, gave us fascinating facts and made the whole experience truly memorable.",
+  },
+  {
+    name: "Sanjay Tamara",
+    subtitle: "Tempel Tour Athens",
+    rating: 5,
+    text: "Best tour we have ever had! Our guide knew everything about the region and made us feel like we were travelling with a local friend. Will book again without hesitation.",
+  },
+  {
+    name: "Philip",
+    subtitle: "Armonia Tour Athens",
     rating: 5,
     text: "Our tour guide was absolutely fantastic. He was incredibly knowledgeable about Nepalese history, gave us fascinating facts and made the whole experience truly memorable.",
   },
@@ -238,7 +263,13 @@ export default function HomePage() {
                   Our team is made up of passionate, highly-trained travel
                   professionals.
                 </p>
-                <Image src={rating} alt="icon" height={32} width={32} className="shrink-0" />
+                <Image
+                  src={rating}
+                  alt="icon"
+                  height={32}
+                  width={32}
+                  className="shrink-0"
+                />
               </div>
             </div>
             <div>
@@ -248,7 +279,13 @@ export default function HomePage() {
                   Historic landmarks, hotels, airports — we take you where you
                   need to go.
                 </p>
-                <Image src={map} alt="icon" height={32} width={32} className="shrink-0" />
+                <Image
+                  src={map}
+                  alt="icon"
+                  height={32}
+                  width={32}
+                  className="shrink-0"
+                />
               </div>
             </div>
           </div>
@@ -355,12 +392,14 @@ export default function HomePage() {
         <div className="flex items-center gap-2 mb-2">
           <Image src={logo} alt="logo" width={18} />
           <span className="text-xs font-semibold tracking-widest text-muted-foreground">
-            DESTINATIONS
+            DESTINATIONSg
           </span>
         </div>
 
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold">Explore our popular destinations!</h2>
+          <h2 className="text-2xl font-bold">
+            Explore our popular destinations!
+          </h2>
           <div className="flex items-center gap-2">
             <a href="/ourtours" className="text-sm font-semibold underline">
               VIEW ALL TOURS
@@ -475,27 +514,32 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl p-6 flex flex-col gap-3 ring-1 ring-foreground/5"
-            >
-              <div className="flex gap-1">
-                {[...Array(t.rating)].map((_, j) => (
-                  <Image key={j} src={star} alt="star" width={14} />
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {t.text}
-              </p>
-              <div className="mt-auto pt-3 border-t border-gray-100">
-                <p className="font-bold text-sm">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.subtitle}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
+          opts={{ loop: true }}
+          className="w-full"
+        >
+          <CarouselContent>
+            {testimonials.map((t, i) => (
+              <CarouselItem key={i} className="md:basis-1/3">
+                <div className="bg-white rounded-2xl p-6 flex flex-col gap-3 ring-1 ring-foreground/5 h-full">
+                  <div className="flex gap-1">
+                    {[...Array(t.rating)].map((_, j) => (
+                      <Image key={j} src={star} alt="star" width={14} />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {t.text}
+                  </p>
+                  <div className="mt-auto pt-3 border-t border-gray-100">
+                    <p className="font-bold text-sm">{t.name}</p>
+                    <p className="text-xs text-muted-foreground">{t.subtitle}</p>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </section>
 
       {/* ── FAQ ── */}
@@ -506,9 +550,7 @@ export default function HomePage() {
             FAQ
           </span>
         </div>
-        <h2 className="text-2xl font-bold mb-8">
-          Frequently Asked Questions
-        </h2>
+        <h2 className="text-2xl font-bold mb-8">Frequently Asked Questions</h2>
 
         <div className="flex flex-col gap-3 max-w-2xl">
           {faqs.map((q, i) => (
@@ -528,8 +570,7 @@ export default function HomePage() {
               {openFaq === i && (
                 <div className="px-6 pb-4 text-sm text-muted-foreground">
                   Our team is happy to assist you with this. Please contact us
-                  at hello@paila.com or call +977 970 226 9971 for more
-                  details.
+                  at hello@paila.com or call +977 970 226 9971 for more details.
                 </div>
               )}
             </div>
