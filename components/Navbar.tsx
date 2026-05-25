@@ -5,9 +5,9 @@ import Logo from "@/public/icons/paila_logo.png";
 
 export default function Navbar() {
   return (
-    <nav className="relative z-50 flex items-center justify-between px-6 md:px-12 bg-amber-400 text-green-700">
+    <nav className="sticky top-0 relative z-50 flex items-center justify-between px-6 md:px-12 bg-amber-400 text-green-700">
       {/* Left: Logo */}
-      
+
       <Link href="/" className="flex items-center">
         <Image src={Logo} alt="Paila logo" width={100} height={50} />
       </Link>

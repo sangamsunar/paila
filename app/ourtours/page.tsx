@@ -88,47 +88,53 @@ export default function Page() {
           />
         </div>
       </section>
-      <section className="flex justify-center items-center">
+      <section className="flex flex-col justify-center items-center px-28 g-amber-500">
         <div className="flex gap-6 hover:bg-amber-200">
           <p className="cursor-pointer">All Tours</p>
           <p className="cursor-pointer">Wheelchair Accessible</p>
         </div>
 
-        <div className="flex">
+        {/* cards */}
+        <div
+          className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-5 
+        "
+        >
           {destinations.map((destination) => {
             return (
-              <div key={destination.id}>
-                <Image
-                  src={destination.image}
-                  alt={destination.description}
-                  height={140}
-                  width={210}
-                />
+              <div
+                className="flex flex-col rounded-2xl gap-y-3 py-6 px-3 items-start justify-between shadow-md bg-[#EEEBE0] w-[340px]"
+                key={destination.id}
+              >
+                <div className="relative w-72 lg:w-80 h-40">
+                  <Image
+                    src={destination.image}
+                    alt={destination.description}
+                    fill
+                    className="object-cover rounded-lg"
+                  />
+                </div>
+
+                <div className="flex">
+                  <Image src={Logo} alt="logo" height={25} width={25} />
+                  <p>{destination.duration}</p>
+                </div>
+                <p>{destination.title}</p>
+                <p>{destination.description}</p>
+
+                {/* buttons */}
+                <div className="flex justify-between items-center w-full">
+                  <button className="border rounded-2xl w-32 h-12">
+                    More Info
+                  </button>
+                  <button className="border rounded-2xl w-32 h-12 text-amber-50 bg-green-800">
+                    Book
+                  </button>
+                </div>
               </div>
             );
           })}
         </div>
         {/* work in progress */}
-      </section>
-
-      {/* footer */}
-      <section className="flex flex-col justify-center items-center gap-y-12 bg-[#E2DFCE]">
-        <div className="flex justify-center items-center">
-          <Image
-            src="/icons/paila_logo.png"
-            width={60}
-            height={60}
-            alt="get in touch icon"
-          />
-          <p>GET IN TOUCH</p>
-        </div>
-
-        <p>Have a question or need assistance?</p>
-        <p>We're here to help in the way most </p>
-
-        <div className="bg-green-800 w-6xl">
-          <h1>hi there</h1>
-        </div>
       </section>
     </div>
   );
