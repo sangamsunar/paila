@@ -137,51 +137,6 @@ const benefits = [
   },
 ];
 
-const testimonials = [
-  {
-    name: "Mila",
-    subtitle: "Armonia Tour Athens",
-    rating: 5,
-    text: "We have just had an amazing Paila tour. Our guide was fantastic — completing the day tour with complete 100% satisfaction and genuine passion about presenting Nepal's history.",
-  },
-  {
-    name: "Philip",
-    subtitle: "Armonia Tour Athens",
-    rating: 4,
-    text: "Our tour guide was absolutely fantastic. He was incredibly knowledgeable about Nepalese history, gave us fascinating facts and made the whole experience truly memorable.",
-  },
-  {
-    name: "Sanjay Tamara",
-    subtitle: "Tempel Tour Athens",
-    rating: 5,
-    text: "Best tour we have ever had! Our guide knew everything about the region and made us feel like we were travelling with a local friend. Will book again without hesitation.",
-  },
-  {
-    name: "Philip",
-    subtitle: "Armonia Tour Athens",
-    rating: 3,
-    text: "Our tour guide was absolutely fantastic. He was incredibly knowledgeable about Nepalese history, gave us fascinating facts and made the whole experience truly memorable.",
-  },
-  {
-    name: "Sanjay Tamara",
-    subtitle: "Tempel Tour Athens",
-    rating: 5,
-    text: "Best tour we have ever had! Our guide knew everything about the region and made us feel like we were travelling with a local friend. Will book again without hesitation.",
-  },
-  {
-    name: "Philip",
-    subtitle: "Armonia Tour Athens",
-    rating: 5,
-    text: "Our tour guide was absolutely fantastic. He was incredibly knowledgeable about Nepalese history, gave us fascinating facts and made the whole experience truly memorable.",
-  },
-  {
-    name: "Sanjay Tamara",
-    subtitle: "Tempel Tour Athens",
-    rating: 5,
-    text: "Best tour we have ever had! Our guide knew everything about the region and made us feel like we were travelling with a local friend. Will book again without hesitation.",
-  },
-];
-
 const faqs = [
   "What types of transport do you offer for the tours?",
   "Are the tours accessible for people with special needs?",
@@ -194,10 +149,30 @@ export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState("private");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [testimonialData, setTestimonialData] = useState([]);
 
   useEffect(() => {
     setMounted(true);
+    GetAllTestimonials();
   }, []);
+
+  const GetAllTestimonials = async () => {
+    await fetch("https://dummyjson.com/comments")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        console.log("response from dummy data", data);
+        setTestimonialData(data.comments);
+      })
+      .catch((err) => {
+        console.warn("Something went wrong", err);
+      });
+  };
 
   return (
     <div className="bg-[#F5F2E8]">
@@ -520,7 +495,7 @@ export default function HomePage() {
           className="w-full"
         >
           <CarouselContent>
-            {testimonials.map((t, i) => (
+            {testimonialData.map((t, i) => (
               <CarouselItem key={i} className="md:basis-1/3">
                 <div className="bg-white rounded-2xl p-6 flex flex-col gap-3 ring-1 ring-foreground/5 h-full">
                   <div className="flex gap-1">
@@ -529,11 +504,13 @@ export default function HomePage() {
                     ))}
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t.text}
+                    {t.text ?? "Test"}
                   </p>
                   <div className="mt-auto pt-3 border-t border-gray-100">
-                    <p className="font-bold text-sm">{t.name}</p>
-                    <p className="text-xs text-muted-foreground">{t.subtitle}</p>
+                    <p className="font-bold text-sm">{t.name || "-"}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {t.subtitle || "-"}
+                    </p>
                   </div>
                 </div>
               </CarouselItem>

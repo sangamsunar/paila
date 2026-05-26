@@ -10,57 +10,61 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 
-function TestimonialSection() {
-  const reviews = [
-    {
-      id: 1,
-      star: 5,
-      description:
-        "We loved our trip! Visiting Mycenae was a lifelong dream of my 74yr old father and booking this day trip was completely fulfilling. Our guide Alex was wonderful. He was flexible with timing and the activities included. He gave us great information about the history.. For lunch he even took us on a side trip to a different town to make sure we could get authentic gyros and not something from the tourist section of Athens.",
-      name: "Alicia",
-      destination: "Langtang",
-    },
-    {
-      id: 2,
-      star: 4,
-      description:
-        "My tour guide, Marinos, was fantastic! He was very kind, helpful and informative and wanted me to see the very best of Athens which I believe that we did!! I would highly recommend Marinos for anyone who has mobility issues as he will respect your limitations but also make sure that you can see everything that you are able to see!",
-      name: "Sherry",
-      destination: "Kori",
-    },
-    {
-      id: 3,
-      star: 4,
-      description:
-        "My tour guide, Marinos, was fantastic! He was very kind, helpful and informative and wanted me to see the very best of Athens which I believe that we did!! I would highly recommend Marinos for anyone who has mobility issues as he will respect your limitations but also make sure that you can see everything that you are able to see!",
-      name: "Sherry",
-      destination: "Kori",
-    },
-    {
-      id: 4,
-      star: 5,
-      description:
-        "We loved our trip! Visiting Mycenae was a lifelong dream of my 74yr old father and booking this day trip was completely fulfilling. Our guide Alex was wonderful. He was flexible with timing and the activities included. He gave us great information about the history.. For lunch he even took us on a side trip to a different town to make sure we could get authentic gyros and not something from the tourist section of Athens.",
-      name: "Alicia",
-      destination: "Langtang",
-    },
-    {
-      id: 5,
-      star: 4,
-      description:
-        "My tour guide, Marinos, was fantastic! He was very kind, helpful and informative and wanted me to see the very best of Athens which I believe that we did!! I would highly recommend Marinos for anyone who has mobility issues as he will respect your limitations but also make sure that you can see everything that you are able to see!",
-      name: "Sherry",
-      destination: "Kori",
-    },
-    {
-      id: 6,
-      star: 4,
-      description:
-        "My tour guide, Marinos, was fantastic! He was very kind, helpful and informative and wanted me to see the very best of Athens which I believe that we did!! I would highly recommend Marinos for anyone who has mobility issues as he will respect your limitations but also make sure that you can see everything that you are able to see!",
-      name: "Sherry",
-      destination: "Kori",
-    },
-  ];
+function TestimonialSection({
+  reviews,
+}: {
+  reviews: Record<string, string>[];
+}) {
+  // const reviews = [
+  //   {
+  //     id: 1,
+  //     star: 5,
+  //     description:
+  //       "We loved our trip! Visiting Mycenae was a lifelong dream of my 74yr old father and booking this day trip was completely fulfilling. Our guide Alex was wonderful. He was flexible with timing and the activities included. He gave us great information about the history.. For lunch he even took us on a side trip to a different town to make sure we could get authentic gyros and not something from the tourist section of Athens.",
+  //     name: "Alicia",
+  //     destination: "Langtang",
+  //   },
+  //   {
+  //     id: 2,
+  //     star: 4,
+  //     description:
+  //       "My tour guide, Marinos, was fantastic! He was very kind, helpful and informative and wanted me to see the very best of Athens which I believe that we did!! I would highly recommend Marinos for anyone who has mobility issues as he will respect your limitations but also make sure that you can see everything that you are able to see!",
+  //     name: "Sherry",
+  //     destination: "Kori",
+  //   },
+  //   {
+  //     id: 3,
+  //     star: 4,
+  //     description:
+  //       "My tour guide, Marinos, was fantastic! He was very kind, helpful and informative and wanted me to see the very best of Athens which I believe that we did!! I would highly recommend Marinos for anyone who has mobility issues as he will respect your limitations but also make sure that you can see everything that you are able to see!",
+  //     name: "Sherry",
+  //     destination: "Kori",
+  //   },
+  //   {
+  //     id: 4,
+  //     star: 5,
+  //     description:
+  //       "We loved our trip! Visiting Mycenae was a lifelong dream of my 74yr old father and booking this day trip was completely fulfilling. Our guide Alex was wonderful. He was flexible with timing and the activities included. He gave us great information about the history.. For lunch he even took us on a side trip to a different town to make sure we could get authentic gyros and not something from the tourist section of Athens.",
+  //     name: "Alicia",
+  //     destination: "Langtang",
+  //   },
+  //   {
+  //     id: 5,
+  //     star: 4,
+  //     description:
+  //       "My tour guide, Marinos, was fantastic! He was very kind, helpful and informative and wanted me to see the very best of Athens which I believe that we did!! I would highly recommend Marinos for anyone who has mobility issues as he will respect your limitations but also make sure that you can see everything that you are able to see!",
+  //     name: "Sherry",
+  //     destination: "Kori",
+  //   },
+  //   {
+  //     id: 6,
+  //     star: 4,
+  //     description:
+  //       "My tour guide, Marinos, was fantastic! He was very kind, helpful and informative and wanted me to see the very best of Athens which I believe that we did!! I would highly recommend Marinos for anyone who has mobility issues as he will respect your limitations but also make sure that you can see everything that you are able to see!",
+  //     name: "Sherry",
+  //     destination: "Kori",
+  //   },
+  // ];
 
   const [api, setApi] = React.useState<CarouselApi>();
   const intervalRef = React.useRef<NodeJS.Timeout | null>(null);

@@ -7,7 +7,7 @@ interface DestinationCardProps {
   duration: string;
   location: string;
   image: StaticImageData | string;
-  tags: string[];
+  accessible?: boolean;
 }
 
 export default function DestinationCard({
@@ -15,22 +15,17 @@ export default function DestinationCard({
   description,
   duration,
   image,
-  tags,
+  accessible,
 }: DestinationCardProps) {
   return (
     <div className="flex flex-col rounded-2xl overflow-hidden bg-white ring-1 ring-foreground/10 h-full">
       <div className="relative w-full h-55 shrink-0">
         <Image src={image} alt={title} fill className="object-cover" />
-        <div className="absolute top-3 left-3 flex gap-1 flex-wrap">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="bg-white/90 text-xs font-medium px-2 py-0.5 rounded-full text-green-800"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        {accessible && (
+          <div className="absolute top-3 left-3 bg-[#c8d44e] text-green-900 text-xs font-semibold px-2 py-1 rounded-full flex items-center gap-1">
+            ♿ Wheelchair Accessible
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-2 p-4 flex-1">
